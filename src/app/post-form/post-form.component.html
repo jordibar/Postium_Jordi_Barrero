@@ -1,0 +1,47 @@
+<!--=======================================================================|
+| Purple Path                                                              |
+|==========================================================================|
+| Enlaza el submit del formulario con la función 'emitPostSubmitted()'.    |
+|========================================================================-->
+<form [formGroup]="postForm" novalidate>
+
+  <!--=======================================================================|
+  | Purple Path                                                              |
+  |==========================================================================|
+  | Enlaza el input con el control 'title' definido en el FormGroup.         |
+  |========================================================================-->
+  <input
+    type="text"
+    placeholder="Título"
+    class="u-full-width">
+
+  <!--=======================================================================|
+  | Purple Path                                                              |
+  |==========================================================================|
+  | Enlaza el textarea con el control 'intro' definido en el FormGroup.      |
+  |========================================================================-->
+  <textarea
+    placeholder="Introduce tu historia"
+    class="u-full-width georgia-font"
+    autogrow></textarea>
+
+  <!--=======================================================================|
+  | Purple Path                                                              |
+  |==========================================================================|
+  | Enlaza el textarea con el control 'body' definido en el FormGroup.       |
+  |========================================================================-->
+  <textarea
+    placeholder="Cuenta tu historia"
+    class="u-full-width georgia-font"
+    autogrow></textarea>
+
+  <!--=======================================================================|
+  | Purple Path                                                              |
+  |==========================================================================|
+  | Deshabilita el botón 'Publicar' si el formulario no es válido.           |
+  |========================================================================-->
+  <button
+    type="submit"
+    class="button-primary u-pull-right">Publicar</button>
+
+</form>
