@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -31,8 +31,25 @@ export class PostService {
     |                                                                          |
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
+    let fecha = new Date(2017, 9, 8).getTime();
+    //let fecha = nuevaFecha.setDate(6);
+    console.log('Hora: '+fecha);
 
-    return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+    const opciones = {
+      
+
+      params: new HttpParams()
+      // Podemos cambiar la fecha de publicación para que no sea el día actual, por ejemplo:
+      // .set('publicationDate_lte', new Date(2017, 9, 1).getTime().toString())
+      .set('publicationDate_lte', new Date().getTime().toString())
+      .set('_sort', 'publicationDate')
+      .set('_order', 'desc')
+    };
+
+    return this._http.get<Post[]>(
+      `${environment.backendUri}/posts`,
+      opciones
+    );
   }
 
   getUserPosts(id: number): Observable<Post[]> {
