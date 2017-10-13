@@ -27,7 +27,7 @@
 |==========================================================================|
 | Un clic sobre el post debería enviar un evento al componente padre.      |
 |========================================================================-->
-<div class="post">
+<div class="post" (click)="notificarClicEnPost(post)">
   <h3>{{ post.title }}</h3>
   <img *ngIf="post.media" [src]="post.media" class="u-max-full-width">
   <div class="html-text" [innerHtml]="plainTextToHtml(post.intro)"></div>

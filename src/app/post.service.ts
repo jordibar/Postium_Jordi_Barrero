@@ -33,7 +33,7 @@ export class PostService {
     |=========================================================================*/
     let fecha = new Date(2017, 9, 8).getTime();
     //let fecha = nuevaFecha.setDate(6);
-    console.log('Hora: '+fecha);
+    //console.log('Hora: '+fecha);
 
     const opciones = {
       

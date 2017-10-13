@@ -13,4 +13,7 @@
 | en él para notificar los clics sobre los posts.                          |
 |========================================================================-->
 
-<app-post-preview *ngFor="let post of posts" [post]="post"></app-post-preview>
+<app-post-preview *ngFor="let post of posts"
+    [post]="post"
+    (postPulsado)="mostrarPostDetails($event)">
+</app-post-preview>

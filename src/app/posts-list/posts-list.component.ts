@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Post } from '../post';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts-list',
@@ -10,6 +11,10 @@ import { Post } from '../post';
 export class PostsListComponent {
 
   @Input() posts: Post[];
+
+  constructor(
+    private _router: Router) {}
+
 
   /*=========================================================================|
   | Red Path                                                                 |
@@ -30,5 +35,9 @@ export class PostsListComponent {
   | app. La ruta a navegar es '/posts', pasando como parámetro el            |
   | identificador del post.                                                  |
   |=========================================================================*/
-
+  mostrarPostDetails(post: Post): void {
+    const postId = post.id;
+    this._router.navigate(['/posts/', postId ]);
+    //console.log("Post pulsado "+post.id);
+  }
 }
