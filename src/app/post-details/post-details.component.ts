@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NativeWindow } from '../window';
@@ -37,7 +37,11 @@ export class PostDetailsComponent implements OnInit {
   | inyectar como dependencia el Router de la app. La ruta a navegar es      |
   | '/posts/users', pasando como parámetro el identificador del autor.       |
   |=========================================================================*/
-
+  @Output() usuarioPulsado = new EventEmitter<Post>();
+  
+    notificarClicEnUsuario(post: Post): void {
+      this.usuarioPulsado.emit(post);
+    }
   /*=========================================================================|
   | Yellow Path                                                              |
   |==========================================================================|

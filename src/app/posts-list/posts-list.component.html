@@ -15,5 +15,6 @@
 
 <app-post-preview *ngFor="let post of posts"
     [post]="post"
-    (postPulsado)="mostrarPostDetails($event)">
+    (postPulsado)="mostrarPostDetails($event)"
+    (usuarioPulsado)="mostrarPostsUsuario($event)">
 </app-post-preview>

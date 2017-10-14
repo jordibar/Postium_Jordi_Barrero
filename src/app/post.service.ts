@@ -31,7 +31,7 @@ export class PostService {
     |                                                                          |
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
-    let fecha = new Date(2017, 9, 8).getTime();
+    //let fecha = new Date(2017, 9, 8).getTime();
     //let fecha = nuevaFecha.setDate(6);
     //console.log('Hora: '+fecha);
 
@@ -51,6 +51,9 @@ export class PostService {
       opciones
     );
   }
+
+
+
 
   getUserPosts(id: number): Observable<Post[]> {
 
@@ -73,9 +76,31 @@ export class PostService {
     |                                                                          |
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
+    
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+    const opciones = {
+      
+
+      params: new HttpParams()
+      // Podemos cambiar la fecha de publicación para que no sea el día actual, por ejemplo:
+      // .set('publicationDate_lte', new Date(2017, 9, 1).getTime().toString())
+      .set('publicationDate_lte', new Date().getTime().toString())
+      .set('_sort', 'publicationDate')
+      .set('_order', 'desc')
+    };
+
+    console.log("Usuario pulsado en posts.service: " +id);
+
+
+    return this._http.get<Post[]>(
+      `${environment.backendUri}/posts`,
+      opciones
+    ).map(posts => { return posts.filter(posts => {return posts.author.id === id} ) });
+
   }
+
+
+
 
   getCategoryPosts(id: number): Observable<Post[]> {
 

@@ -25,6 +25,11 @@ export class PostsListComponent {
   | Router de la app. La ruta a navegar es '/posts/users', pasando como      |
   | parámetro el identificador del autor.                                    |
   |=========================================================================*/
+  mostrarPostsUsuario(post: Post): void {
+    const userId = post.author.id;
+    this._router.navigate(['posts/users', userId ]);
+    
+  }
 
   /*=========================================================================|
   | Green Path                                                               |

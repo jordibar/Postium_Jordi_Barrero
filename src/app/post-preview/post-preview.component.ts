@@ -20,6 +20,14 @@ export class PostPreviewComponent {
   | dicho clic se realiza en el template de este componente, necesitas,      |
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
+  @Output() usuarioPulsado = new EventEmitter<Post>();
+
+  notificarClicEnUsuario(post: Post): void {
+
+    this.usuarioPulsado.emit(post);
+  }
+
+
 
   /*=========================================================================|
   | Green Path                                                               |
