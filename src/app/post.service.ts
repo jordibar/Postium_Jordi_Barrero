@@ -146,17 +146,21 @@ export class PostService {
      return this._http.get<Post[]>(
        `${environment.backendUri}/posts`,
        opciones
-      ).map(posts => {
-        return posts.filter(categories => (categories.id) === id);
-      });
-
+      ).map(posts => { 
+        return posts.filter(posts => {
+          return posts.categories.filter(categories => {
+            return categories.id === id;
+          }).length > 0;
+        });
+     });
 
         /*
         return this._http.get<Post[]>(
           `${environment.backendUri}/posts`,
           opciones
          ).map(posts => { 
-           return posts.filter(categories => (categories.id) === id);});
+           return posts.filter(categories => (categories.id) === id);
+        });
            */
 
       /*
