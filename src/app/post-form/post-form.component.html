@@ -3,7 +3,10 @@
 |==========================================================================|
 | Enlaza el submit del formulario con la función 'emitPostSubmitted()'.    |
 |========================================================================-->
-<form [formGroup]="postForm" novalidate>
+<form
+  [formGroup]="postForm"
+  novalidate
+  (ngSubmit) = "emitPostSubmitted()">
 
   <!--=======================================================================|
   | Purple Path                                                              |
@@ -13,7 +16,10 @@
   <input
     type="text"
     placeholder="Título"
-    class="u-full-width">
+    class="u-full-width"
+    formControlName="title"
+    >
+    <span *ngIf="postForm.get('title').touched && postForm.get('title').invalid">El título del post es obligatorio</span>
 
   <!--=======================================================================|
   | Purple Path                                                              |
@@ -23,7 +29,9 @@
   <textarea
     placeholder="Introduce tu historia"
     class="u-full-width georgia-font"
-    autogrow></textarea>
+    autogrow
+    formControlName="intro"></textarea>
+    <span *ngIf="postForm.get('intro').touched && postForm.get('intro').invalid">La introducción del post es obligatoria</span>
 
   <!--=======================================================================|
   | Purple Path                                                              |
@@ -33,7 +41,8 @@
   <textarea
     placeholder="Cuenta tu historia"
     class="u-full-width georgia-font"
-    autogrow></textarea>
+    autogrow
+    fromControlName="body"></textarea>
 
   <!--=======================================================================|
   | Purple Path                                                              |
@@ -42,6 +51,7 @@
   |========================================================================-->
   <button
     type="submit"
+    [disabled]="postForm.invalid"
     class="button-primary u-pull-right">Publicar</button>
 
 </form>

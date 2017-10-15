@@ -37,7 +37,7 @@ export class PostsResolveService implements Resolve<Post[]> {
     | ver qué encuentras.                                                      |
     |=========================================================================*/
     else if (route.params['categoryId']) {
-      console.log("Se ha enviado un categoryId: ");
+      console.log("Se ha enviado un categoryId: " +route.params['categoryId']);
       return this._postService.getCategoryPosts(+route.params['categoryId']);
     }
     else {

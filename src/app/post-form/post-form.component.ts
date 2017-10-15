@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Post } from '../post';
 import { User } from '../user';
@@ -31,8 +31,11 @@ export class PostFormComponent {
     | las propiedades 'title', 'intro' y 'body' de los posts. Los dos primeros |
     | son obligatorios, así que recuerda añadir el validador oportuno.         |
     |=========================================================================*/
-
-    this.postForm = this._formBuilder.group({});
+    this.postForm = this._formBuilder.group({
+      title: ['', Validators.required],
+      intro: ['', Validators.required],
+      body: ''
+    });
   }
 
   emitPostSubmitted(): void {

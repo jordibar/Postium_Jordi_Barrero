@@ -146,15 +146,18 @@ export class PostService {
      return this._http.get<Post[]>(
        `${environment.backendUri}/posts`,
        opciones
-      ).map(posts => { 
-        return posts.filter(posts => {
-          
-          return posts.categories.filter(categories => {
-            console.log(id);
-            return (categories.id) === id;
-          });
-        }); 
+      ).map(posts => {
+        return posts.filter(categories => (categories.id) === id);
       });
+
+
+        /*
+        return this._http.get<Post[]>(
+          `${environment.backendUri}/posts`,
+          opciones
+         ).map(posts => { 
+           return posts.filter(categories => (categories.id) === id);});
+           */
 
       /*
       return this._http.get<Post[]>(
@@ -188,8 +191,11 @@ export class PostService {
     | práctica retornar la misma con los datos actualizados obtenidos tras la  |
     | inserción.                                                               |
     |=========================================================================*/
+    return this._http.post<Post>(`${environment.backendUri}/posts`, post);
 
-    return null;
+
+
+    //return null;
   }
 
 }
