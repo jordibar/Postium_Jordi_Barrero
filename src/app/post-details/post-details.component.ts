@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { NativeWindow } from '../window';
 import { Post } from '../post';
+import { Category } from '../category';
+import { Router } from '@angular/router';
+
 
 @Component({
   templateUrl: './post-details.component.html',
@@ -14,6 +17,7 @@ export class PostDetailsComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _router: Router,
     @Inject(NativeWindow) private _window) { }
 
   ngOnInit(): void {
@@ -51,5 +55,9 @@ export class PostDetailsComponent implements OnInit {
   | '/posts/categories', pasando como parámetro el identificador de la       |
   | categoría.                                                               |
   |=========================================================================*/
-
+  mostrarPostsPorCategoria(category: Category): void {
+    const catId = category.id;
+    console.log("categoria en post-details.component: "+catId);
+    this._router.navigate(['/posts/categories', catId ]);
+  }
 }

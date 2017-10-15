@@ -23,7 +23,7 @@ export class PostPreviewComponent {
   @Output() usuarioPulsado = new EventEmitter<Post>();
 
   notificarClicEnUsuario(post: Post): void {
-
+    //console.log("Usuario pulsado: " + post.author)
     this.usuarioPulsado.emit(post);
   }
 

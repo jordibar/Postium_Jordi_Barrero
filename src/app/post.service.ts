@@ -89,8 +89,7 @@ export class PostService {
       .set('_order', 'desc')
     };
 
-    console.log("Usuario pulsado en posts.service: " +id);
-
+    //console.log("Usuario pulsado en posts.service: " +id);
 
     return this._http.get<Post[]>(
       `${environment.backendUri}/posts`,
@@ -131,9 +130,48 @@ export class PostService {
     |                                                                          |
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
+    
+    const opciones = {
+      
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+      params: new HttpParams()
+      // Podemos cambiar la fecha de publicación para que no sea el día actual, por ejemplo:
+      // .set('publicationDate_lte', new Date(2017, 9, 1).getTime().toString())
+      .set('publicationDate_lte', new Date().getTime().toString())
+      .set('_sort', 'publicationDate')
+      .set('_order', 'desc')
+    };
+
+
+     return this._http.get<Post[]>(
+       `${environment.backendUri}/posts`,
+       opciones
+      ).map(posts => { 
+        return posts.filter(posts => {
+          
+          return posts.categories.filter(categories => {
+            console.log(id);
+            return (categories.id) === id;
+          });
+        }); 
+      });
+
+      /*
+      return this._http.get<Post[]>(
+       `${environment.backendUri}/posts`,
+       opciones
+      ).map(posts => { 
+        return posts.filter(posts => {
+          return posts.categories.filter(categories => {
+            return categories.id === 2;
+          });
+        }); 
+      });
+      */
   }
+
+
+  
 
   getPostDetails(id: number): Observable<Post> {
     return this._http.get<Post>(`${environment.backendUri}/posts/${id}`);

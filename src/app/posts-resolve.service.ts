@@ -22,14 +22,10 @@ export class PostsResolveService implements Resolve<Post[]> {
     | qué encuentras.                                                          |
     |=========================================================================*/
     if (route.params['userId']) {
-      console.log("Se ha enviado un userID");
+      //console.log("Se ha enviado un userID");
       return this._postService.getUserPosts(+route.params['userId']);
     }
-    else if (route.params['categoryId']) {
-      console.log("Se ha enviado un categoryId");
-      return this._postService.getCategoryPosts(+route.params['categoryId']);
-    }
-    else {
+    
       
     
     /*=========================================================================|
@@ -40,7 +36,11 @@ export class PostsResolveService implements Resolve<Post[]> {
     | del servicio PostService. Recuerda mirar en los parámetros de la ruta, a |
     | ver qué encuentras.                                                      |
     |=========================================================================*/
-
+    else if (route.params['categoryId']) {
+      console.log("Se ha enviado un categoryId: ");
+      return this._postService.getCategoryPosts(+route.params['categoryId']);
+    }
+    else {
     return this._postService.getPosts();
     }
   }
